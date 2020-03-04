@@ -10,9 +10,10 @@ import { Context } from "../context/BlogContext";
 import { EvilIcons } from "@expo/vector-icons";
 
 const ShowScreen = ({ navigation }) => {
-  const id = navigation.getParam("id");
   const { state } = useContext(Context);
-  const blogPost = state.find(blogPost => blogPost.id == id);
+  const blogPost = state.find(
+    blogPost => blogPost.id === navigation.getParam("id")
+  );
 
   return (
     <View>
@@ -22,7 +23,7 @@ const ShowScreen = ({ navigation }) => {
   );
 };
 
-ShowScreen.navigationOptions = ({ navigation, id }) => {
+ShowScreen.navigationOptions = ({ navigation }) => {
   return {
     headerRight: (
       <TouchableOpacity
@@ -35,6 +36,5 @@ ShowScreen.navigationOptions = ({ navigation, id }) => {
     )
   };
 };
-
 const styles = StyleSheet.create({});
 export default ShowScreen;

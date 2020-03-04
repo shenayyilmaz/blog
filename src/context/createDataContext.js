@@ -5,18 +5,17 @@ export default (reducer, actions, initialState) => {
 
   const Provider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    //console.log("im here", action(dispatch));
-    const boundActions = {};
+    const boundAaction = {};
     for (let key in actions) {
-      boundActions[key] = actions[key](dispatch);
+      boundAaction[key] = actions[key](dispatch);
     }
-    console.log(boundActions);
+
     return (
-      // <Context.Provider value={{ state, addBlogPost: actions(dispatch) }}>
-      <Context.Provider value={{ state, ...boundActions }}>
+      <Context.Provider value={{ state, ...boundAaction }}>
         {children}
       </Context.Provider>
     );
   };
+
   return { Context, Provider };
 };
